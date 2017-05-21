@@ -16,11 +16,13 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'puma', '~> 3.0'
 gem 'slim'
+gem 'foundation-rails'
+
+# Authenticate
+gem 'devise'
 
 #ORM
 gem 'pg', '~> 0.18'
-
-
 
 group :development, :test do
   gem 'pry-byebug'
@@ -41,4 +43,3 @@ end
 group :production do
   gem 'rails_12factor'
 end
-
