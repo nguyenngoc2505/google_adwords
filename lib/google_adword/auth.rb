@@ -20,11 +20,6 @@ class GoogleAdword::Auth
     invalid_login_email
   end
 
-  def user_uid
-    fb_access_token = login_info[:fb_access_token]
-    @id ||= GoogleAdword::Facebook::API.new(fb_access_token).user_information["id"]
-  end
-
   def invalid_login_email
     raise GoogleAdword::Error::API::Login::InvalidEmailOrPassword
   end

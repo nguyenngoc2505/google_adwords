@@ -7,8 +7,6 @@ class Api::SessionsController < DeviseController
     error_code: GoogleAdword::Error::CODES[:invalid_email_or_password]
   handle_as_internal_server_error GoogleAdword::Error::API::Login::InvalidParams,
     error_code: GoogleAdword::Error::CODES[:invalid_params]
-  handle_as_not_found GoogleAdword::Error::API::Login::UserNotRegister,
-    error_code: GoogleAdword::Error::CODES[:user_not_register]
 
   prepend_before_action :require_no_authentication, only: :create
   before_action :ensure_params_exist

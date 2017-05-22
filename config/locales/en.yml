@@ -4,3 +4,9 @@ en:
       title: "Login"
     home:
       title: "Home Page"
+  google_adword:
+    error:
+      api:
+        login:
+          invalid_email_or_password: "Invalid Email or Password"
+          invalid_params: "Invalid Params"
