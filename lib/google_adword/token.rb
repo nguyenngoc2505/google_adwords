@@ -1,9 +1,11 @@
-module GoogleAdword::Token
-  LENGTH = 32
+module GoogleAdword
+  module Token
+    LENGTH = 32
 
-  def generate
-    SecureRandom.hex LENGTH
+    def generate
+      SecureRandom.hex LENGTH
+    end
+
+    module_function :generate
   end
-
-  module_function :generate
 end
