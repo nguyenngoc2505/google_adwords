@@ -92,3 +92,6 @@ production:
   database: google_adwords_production
   username: google_adwords
   password: <%= ENV['GOOGLE_ADWORDS_DATABASE_PASSWORD'] %>
+
+  redis:
+    host: <%= ENV['REDIS_URL'] %>
