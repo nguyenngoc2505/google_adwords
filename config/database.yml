@@ -94,4 +94,4 @@ production:
   password: <%= ENV['GOOGLE_ADWORDS_DATABASE_PASSWORD'] %>
 
   redis:
-    host: <%= ENV['REDIS_URL'] %>
+    url: <%= ENV['REDIS_URL'] %>
