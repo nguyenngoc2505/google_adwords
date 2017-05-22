@@ -2,3 +2,5 @@ en:
   page:
     login:
       title: "Login"
+    home:
+      title: "Home Page"

@@ -14,19 +14,25 @@
   <body>
     <nav class="top-bar topbar-responsive">
       <div class="top-bar-title">
-        <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
-          <button class="menu-icon" type="button" data-toggle></button>
-        </span>
-        <a class="topbar-responsive-logo" href="#"><strong>Google Adwords</strong></a>
+        <%= link_to "<strong>Google Adwords</strong>".html_safe, root_path, class: "topbar-responsive-logo" %>
       </div>
       <div id="topbar-responsive" class="topbar-responsive-links">
         <div class="top-bar-right">
           <ul class="menu simple vertical medium-horizontal">
-            <li><a href="#">Home</a></li>
+            <% if user_signed_in? %>
+              <li>
+              <%= link_to("Logout", destroy_user_session_path) %>
+              </li>
+            <% else %>
+              <li>
+              <%= link_to("Login", new_user_session_path) %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
     </nav>
+
     <%= yield %>
 
   </body>

@@ -27,6 +27,13 @@ development:
   username: postgres
   password: postgres
 
+  redis: &redis_config
+    host: localhost
+    port: 6379
+    db: 0
+    options:
+      namespace: google_adword-dev
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is

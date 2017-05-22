@@ -24,6 +24,9 @@ gem 'devise'
 #ORM
 gem 'pg', '~> 0.18'
 
+#Redis
+gem "redis-rails"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'

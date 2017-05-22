@@ -10,7 +10,7 @@ body {
   background: #fff;
   border: 1px solid #ddd; 
   margin: 40px 0;
-  padding: 40px 20px 10px 20px;
+  padding: 40px 20px 20px 20px;
 }
 
 .topbar-responsive {
@@ -32,6 +32,7 @@ body {
     a {
       color: white;
       transition: color 0.15s ease-in;
+      padding-top: 10px;
 
       &:hover {
         color: lighten(#2c3840, 60%);
@@ -70,10 +71,6 @@ body {
         padding: 0.25rem 0.45rem;
         top: 50%;
         transform: translateY(-50%);
-
-        .menu-icon {
-          margin-bottom: 4px;
-        }
       }
     }
   }
