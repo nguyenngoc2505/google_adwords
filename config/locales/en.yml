@@ -7,6 +7,9 @@ en:
   google_adword:
     error:
       api:
+        common:
+          invalid_access_token: "Invalid Access Token"
+          no_access_token: "No Access Token"
         login:
           invalid_email_or_password: "Invalid Email or Password"
           invalid_params: "Invalid Params"

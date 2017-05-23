@@ -7,13 +7,23 @@ class Api::SessionsController < DeviseController
     error_code: GoogleAdword::Error::CODES[:invalid_email_or_password]
   handle_as_internal_server_error GoogleAdword::Error::API::Login::InvalidParams,
     error_code: GoogleAdword::Error::CODES[:invalid_params]
+  handle_as_internal_server_error GoogleAdword::Error::API::Common::NoAccessToken,
+    error_code: GoogleAdword::Error::CODES[:no_access_token]
 
   prepend_before_action :require_no_authentication, only: :create
-  before_action :ensure_params_exist
+  before_action :ensure_params_exist, only: :create
 
   def create
     access_token = GoogleAdword::Auth.new(request_info).login!
     render json: {status: 0, access_token: access_token}
+  end
+
+  def destroy
+    unless access_token = params[:access_token].presence
+      raise GoogleAdword::Error::API::Common::NoAccessToken
+    end
+    Session.destroy_by_token access_token
+    render json: {status: 0}
   end
 
   private

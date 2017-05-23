@@ -20,6 +20,11 @@ class Session
       token
     end
 
+    def destroy_by_token token
+      user_id = find_by_token token
+      redis.del [uid_key(user_id), token_key(token)]
+    end
+
     private
     def redis
       @redis ||= GoogleAdword::RedisConnector.new DB
