@@ -15,8 +15,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'puma', '~> 3.0'
-gem 'slim'
 gem 'foundation-rails'
+gem 'kaminari'
 
 # Authenticate
 gem 'devise'

@@ -4,6 +4,8 @@ en:
       title: "Login"
     home:
       title: "Home Page"
+    keyword:
+      title: "Google Adword"
   google_adword:
     error:
       api:

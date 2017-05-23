@@ -1,6 +1,29 @@
 body {
   background: #F0F0F3;
 }
+
+.content {
+  margin: 40px 100px 40px 100px;
+}
+
+.keyword_content {
+  border: 3px solid #bac7d0;
+}
+
+.row_center {
+  text-align: center;
+
+}
+
+.pagination {
+  float: right;
+}
+
+.keyword_label {
+  background-color: #2c3840;
+  color: white;
+}
+
 .login-header {
   text-align: center;
   margin: 30px;

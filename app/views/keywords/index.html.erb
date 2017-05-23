@@ -1,0 +1,55 @@
+<% @keywords.each do |keyword| %>
+  <div class="keyword_content">
+    <table>
+      <caption class="keyword_label"><%= "#{keyword.keyword} - #{keyword.total_results}" %></caption>
+      <tr>
+        <th scope="column">TopAdword</th>
+        <th scope="column">BottomAdword</th>
+        <th scope="column">Adword</th>
+        <th scope="column">NonAdword</th>
+      </tr>
+      <tr>
+        <th scope="column"><%= keyword.top_adwords_count %></th>
+        <th scope="column"><%= keyword.bottom_adwords_count %></th>
+        <th scope="column"><%= keyword.adwords_count %></th>
+        <th scope="column"><%= keyword.non_adwords_count %></th>
+      </tr>
+      <tr>
+        <td colspan="4" class="row_center"><strong>Total Links: <%= keyword.total_urls %></strong></td>
+      </tr>
+    </table>
+  </div>
+  <br>
+<% end %>
+
+<div class="pagination">
+  <%= paginate @keywords %>
+</div>
+
+<button data-reveal-id="myModal" data-my-number="1">First One</button>
+<button data-reveal-id="myModal" data-my-number="2">Second One</button>
+
+<div id="myModal" class="reveal-modal" data-reveal>
+  <h2>Awesome. I have it.</h2>
+  <p class="lead">The <span class="buttonText"></span>.  It is mine.</p>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<script type="text/javascript">
+  $(document).foundation();
+  $('[data-reveal-id]').on('click', function() {
+    var targetModal = $('#' + $(this).data('revealId'));
+    var newText = $(this).text() + ' (' + $(this).data('myNumber') + ')';
+    targetModal.find('.buttonText').text(newText);
+    var popup = new Foundation.Reveal($('#myModal'));
+    popup.open();
+  });
+  $(".close-reveal-modal").on('click', function() {
+    var popup = new Foundation.Reveal($('#myModal'));
+    popup.close();
+  });
+</script>
+
+<% content_for :title, t("page.keyword.title") %>

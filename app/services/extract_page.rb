@@ -7,6 +7,7 @@ class ExtractPage
 
   def initialize keyword
     @keyword = keyword
+    create_page_variable
   end
 
   def call
@@ -32,9 +33,11 @@ class ExtractPage
     Nokogiri::HTML open(DESTINATION_URL%keyword).read, nil, "utf-8"
   end
 
-  AD_OBJECTS.each do |ad_obj|
-    instance_variable_set "@#{ad_obj}",
-      ad_obj.camelize.constantize.new(page_content)
+  def create_page_variable
+    AD_OBJECTS.each do |ad_obj|
+      instance_variable_set "@#{ad_obj}",
+        ad_obj.camelize.constantize.new(page_content)
+    end
   end
 
   def total_urls
