@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root "keywords#index"
   devise_for :users
-  resources :keywords, only: [:index, :create]
+  resources :keywords, only: [:index, :create, :show]
 
   scope :api, defaults: {format: :json} do
     devise_scope :user do
