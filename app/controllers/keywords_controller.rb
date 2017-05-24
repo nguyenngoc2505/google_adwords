@@ -1,4 +1,5 @@
 class KeywordsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
   before_action :authenticate_user!
 
   layout :get_layout
@@ -9,6 +10,15 @@ class KeywordsController < ApplicationController
 
   def show
     @keyword = Keyword.find params[:id]
+  end
+
+  def create
+    if keywords = ParseKeywordsService.new(params[:keywords]).extract
+      keywords.each{|k| CreateKeywordsJob.perform_later k}
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private

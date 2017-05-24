@@ -1,3 +1,9 @@
+<form action="/keywords" method="POST" enctype="multipart/form-data" id="create_keyword"> 
+  <label for="exampleFileUpload" class="button">Upload File</label>
+  <input type="file" id="exampleFileUpload" class="show-for-sr" name="keywords">
+    <input name="submit" type="submit" id="submit_keyword"> 
+</form> 
+
 <% @keywords.each_with_index do |keyword, index| %>
   <div class="keyword_content">
     <table>
@@ -45,6 +51,10 @@
   $(".close-reveal-modal").on('click', function() {
     var popup = new Foundation.Reveal($('#keywordModal'));
     popup.close();
+  });
+
+  $("#exampleFileUpload").on('change', function() {
+    $("#create_keyword").submit();
   });
 </script>
 

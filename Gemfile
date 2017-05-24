@@ -18,6 +18,9 @@ gem 'puma', '~> 3.0'
 gem 'foundation-rails'
 gem 'kaminari'
 
+# Background Job
+gem 'sidekiq'
+
 # Authenticate
 gem 'devise'
 

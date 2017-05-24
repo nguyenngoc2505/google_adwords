@@ -3,24 +3,24 @@ require "csv"
 class ParseKeywordsService
   LIMIT_KEYWORDS = 1000
 
-  def initialize file_path
-    @file_path = file_path
+  def initialize file
+    @file = file
   end
 
   def extract
-    return if invalid_content?
+    return if in_valid_file? || invalid_content?
     content
   end
 
   private
-  attr_reader :file_path
+  attr_reader :file
 
-  def valid_file?
-    `file --brief --mime-type #{file_path}`.strip == "text/plain"
+  def in_valid_file?
+    file.try(:content_type) != "text/csv"
   end
 
   def content
-    @content ||= CSV.read(file_path).flatten
+    @content ||= CSV.read(file.tempfile).flatten
   rescue
     []
   end
