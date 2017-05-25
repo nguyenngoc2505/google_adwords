@@ -3,6 +3,7 @@
 Extract Google search results by keyword.
 ## Live Demo
 https://google-adwords.herokuapp.com/
+Account: google_adwords_demo@gmail.com / Aa@123456
 
 ## How to run
 
