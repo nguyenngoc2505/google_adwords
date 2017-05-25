@@ -1,24 +1,21 @@
-# README
+# Google Adwords
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Extract Google search results by keyword.
+## Live Demo
+https://google-adwords.herokuapp.com/
 
-Things you may want to cover:
+## How to run
 
-* Ruby version
+### Development
 
-* System dependencies
+```
+bundle exec rake db:setup
+bundle exec rails s
+```
 
-* Configuration
+### Test
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+RAILS_ENV=test rake db:create db:migrate
+bundle exec rspec
+```
