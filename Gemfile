@@ -33,6 +33,13 @@ gem "redis-rails"
 group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do

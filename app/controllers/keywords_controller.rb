@@ -5,11 +5,11 @@ class KeywordsController < ApplicationController
   layout :get_layout
 
   def index
-    @keywords = Keyword.order_by_keyword.page(params[:page]).per 10
+    @keywords = current_user.keywords.order_by_keyword.page(params[:page]).per 10
   end
 
   def show
-    @keyword = Keyword.find params[:id]
+    @keyword = current_user.keywords.find params[:id]
   end
 
   def create

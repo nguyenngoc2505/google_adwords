@@ -6,6 +6,8 @@ en:
       title: "Home Page"
     keyword:
       title: "Google Adword"
+      show:
+        title: "Page Detail"
   google_adword:
     error:
       api:
@@ -15,3 +17,5 @@ en:
         login:
           invalid_email_or_password: "Invalid Email or Password"
           invalid_params: "Invalid Params"
+        keywords:
+          invalid_keyword_id: "Invalid Keyword Id"

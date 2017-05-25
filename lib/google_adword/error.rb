@@ -3,7 +3,9 @@ module GoogleAdword::Error
     invalid_email_or_password: 11,
     invalid_params: 12,
     invalid_access_token: 13,
-    no_access_token: 14
+    no_access_token: 14,
+    invalid_keyword_id: 15,
+    invalid_file: 16
   }
   class Base < ::Exception
     def initialize message_hash = {}
@@ -20,6 +22,11 @@ module GoogleAdword::Error
     module Login
       class InvalidEmailOrPassword < GoogleAdword::Error::Base; end
       class InvalidParams < GoogleAdword::Error::Base; end
+    end
+
+    module Keywords
+      class InvalidKeywordId < GoogleAdword::Error::Base; end
+      class InvalidFile < GoogleAdword::Error::Base; end
     end
   end
 end

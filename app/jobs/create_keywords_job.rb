@@ -1,5 +1,5 @@
 class CreateKeywordsJob < ActiveJob::Base
-  queue_as :create_keyword
+  queue_as :default
 
   def perform user_id, keyword
     keyword_params = ExtractPage.new(keyword).call
