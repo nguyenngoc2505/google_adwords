@@ -18,7 +18,7 @@ class Api::KeywordsController < Api::BaseController
   end
 
   def create
-    @keywords.each{|k| CreateKeywordsJob.perform_later k}
+    @keywords.each{|k| CreateKeywordsJob.perform_later @current_user.id, k}
     render json: {status: 0}
   end
 

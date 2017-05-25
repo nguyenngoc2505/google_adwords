@@ -14,7 +14,7 @@ class KeywordsController < ApplicationController
 
   def create
     if keywords = ParseKeywordsService.new(params[:keywords]).extract
-      keywords.each{|k| CreateKeywordsJob.perform_later k}
+      keywords.each{|k| CreateKeywordsJob.perform_later current_user.id, k}
       redirect_to root_path
     else
       redirect_to root_path
