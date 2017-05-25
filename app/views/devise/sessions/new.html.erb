@@ -3,6 +3,13 @@
 </div>
 <div class="large-5 large-centered columns">
   <div class="login-box">
+    <% flash.each do |type, message| %>
+      <% if message %>
+        <div class="alert error-login">
+          <p class="text-center flash-message"><%= message %></p>
+        </div>
+      <% end %>
+    <% end %>
     <div class="row">
       <div class="large-12 columns">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

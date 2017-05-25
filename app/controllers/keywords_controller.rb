@@ -15,8 +15,10 @@ class KeywordsController < ApplicationController
   def create
     if keywords = ParseKeywordsService.new(params[:keywords]).extract
       keywords.each{|k| CreateKeywordsJob.perform_later current_user.id, k}
+      flash[:success] = "Create Keywords success please wait a moment to see results"
       redirect_to root_path
     else
+      flash[:error] = "Invalid file"
       redirect_to root_path
     end
   end

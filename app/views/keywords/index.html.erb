@@ -1,8 +1,17 @@
+<% flash.each do |type, message| %>
+  <% if message %>
+    <div class="alert alert-<%= type %>">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      <p class="text-center flash-message"><%= message %></p>
+    </div>
+  <% end %>
+<% end %>
+
 <form action="/keywords" method="POST" enctype="multipart/form-data" id="create_keyword"> 
-  <label for="exampleFileUpload" class="button">Upload File</label>
-  <input type="file" id="exampleFileUpload" class="show-for-sr" name="keywords">
+  <label for="keywordFileUpload" class="button">Upload Keywords</label><span class="notice_text"> Please upload CSV files</span>
+  <input type="file" id="keywordFileUpload" class="show-for-sr" name="keywords">
     <input name="submit" type="submit" id="submit_keyword"> 
-</form> 
+</form>
 
 <% @keywords.each_with_index do |keyword, index| %>
   <div class="keyword_content">
@@ -53,8 +62,8 @@
     popup.close();
   });
 
-  $("#exampleFileUpload").on('change', function() {
-    $("#create_keyword").submit();
+  $("#keywordFileUpload").on('change', function() {
+    $('#submit_keyword').click();
   });
 </script>
 
