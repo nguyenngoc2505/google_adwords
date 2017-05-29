@@ -1,4 +1,4 @@
-class NonAdword < Page
+class Page::NonAdword < Page
   def total
     non_adword_content.count
   end

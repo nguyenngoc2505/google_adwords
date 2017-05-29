@@ -1,4 +1,4 @@
-class BottomAdword < Page
+class Page::BottomAdword < Page
   def total
     bottom_adword_content.count
   end

@@ -1,7 +1,7 @@
 require "open-uri"
 require "nokogiri"
 
-class ExtractPage
+class ExtractPageService
   DESTINATION_URL = "https://www.google.com/search?q=%s"
   AD_OBJECTS = %w(adword top_adword bottom_adword non_adword)
 
@@ -36,7 +36,7 @@ class ExtractPage
   def create_page_variable
     AD_OBJECTS.each do |ad_obj|
       instance_variable_set "@#{ad_obj}",
-        ad_obj.camelize.constantize.new(page_content)
+        "Page::#{ad_obj.camelize}".constantize.new(page_content)
     end
   end
 

@@ -1,4 +1,4 @@
-class TopAdword < Page
+class Page::TopAdword < Page
   def total
     top_adword_content.count
   end

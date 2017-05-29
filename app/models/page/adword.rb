@@ -1,4 +1,4 @@
-class Adword < Page
+class Page::Adword < Page
   def total
     adword_elements.css(".ads-ad").count
   end

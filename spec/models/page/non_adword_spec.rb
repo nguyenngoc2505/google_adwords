@@ -1,15 +1,15 @@
 require "rails_helper"
 
-RSpec.describe NonAdword, type: :model do
-  let!(:page_content){Nokogiri::HTML File.read([Rails.root, "/spec/content.txt"].join).gsub("\\", "")}
+RSpec.describe Page::NonAdword, type: :model do
+  let!(:page_content){Nokogiri::HTML File.read([Rails.root, "/spec/fixtures/content.txt"].join).gsub("\\", "")}
   
   describe "#total" do
-    subject{NonAdword.new(page_content).total}
+    subject{Page::NonAdword.new(page_content).total}
     it{is_expected.to eq 10}
   end
 
   describe "#urls" do
-    subject{NonAdword.new(page_content).urls}
+    subject{Page::NonAdword.new(page_content).urls}
     it{is_expected.to eq ["https://www.lynda.com/Google-AdWords-training-tutorials/488-0.html",
       "https://www.jellyfish.co.uk/training/online-courses/google-adwords",
       "https://www.webcredible.com/training/google-adwords-ppc-training/",
