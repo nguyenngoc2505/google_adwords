@@ -1,70 +1,69 @@
-<% flash.each do |type, message| %>
-  <% if message %>
-    <div class="alert alert-<%= type %>">
-      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-      <p class="text-center flash-message"><%= message %></p>
-    </div>
+<div id="keywords-content">
+  <% flash.each do |type, message| %>
+    <% if message %>
+      <div class="alert alert-<%= type %>">
+        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+        <p class="text-center flash-message"><%= message %></p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 
-<form action="/keywords" method="POST" enctype="multipart/form-data" id="create_keyword"> 
-  <label for="keywordFileUpload" class="button">Upload Keywords</label><span class="notice_text"> Please upload CSV files</span>
-  <input type="file" id="keywordFileUpload" class="show-for-sr" name="keywords">
-    <input name="submit" type="submit" id="submit_keyword"> 
-</form>
+  <form action="/keywords" method="POST" enctype="multipart/form-data" id="create_keyword"> 
+    <label for="keywordFileUpload" class="button">Upload Keywords</label><span class="red"> Please upload CSV files</span>
+    <input type="file" id="keywordFileUpload" class="show-for-sr" name="keywords">
+      <input name="submit" type="submit" id="submit_keyword" class="button-hidden"> 
+  </form>
 
-<% @keywords.each_with_index do |keyword, index| %>
-  <div class="keyword_content">
-    <table>
-      <caption class="keyword_label"><%= "#{keyword.keyword} - #{keyword.total_results}" %></caption>
-      <tr>
-        <th scope="column">TopAdword</th>
-        <th scope="column">BottomAdword</th>
-        <th scope="column">Adword</th>
-        <th scope="column">NonAdword</th>
-      </tr>
-      <tr>
-        <th scope="column"><%= get_url_from keyword.top_adwords_urls, keyword.top_adwords_count %></th>
-        <th scope="column"><%= get_url_from keyword.bottom_adwords_urls, keyword.bottom_adwords_count %></th>
-        <th scope="column"><%= get_url_from (keyword.top_adwords_urls + keyword.bottom_adwords_urls), keyword.adwords_count %></th>
-        <th scope="column"><%= get_url_from keyword.non_adwords_urls, keyword.non_adwords_count %></th>
-      </tr>
-      <tr>
-        <td colspan="4" class="row_center"><strong>Total Links: <%= keyword.total_urls %> - <%= link_to "View detail", keyword_path(keyword), target: "_blank" %></strong></td>
-      </tr>
-    </table>
+  <% @keywords.each_with_index do |keyword, index| %>
+    <div class="table_content">
+      <table>
+        <caption class="keyword_label"><%= "#{keyword.keyword} - #{keyword.total_results}" %></caption>
+        <tr>
+          <th scope="column">TopAdword</th>
+          <th scope="column">BottomAdword</th>
+          <th scope="column">Adword</th>
+          <th scope="column">NonAdword</th>
+        </tr>
+        <tr>
+          <th scope="column"><%= get_url_from keyword.top_adwords_urls, keyword.top_adwords_count %></th>
+          <th scope="column"><%= get_url_from keyword.bottom_adwords_urls, keyword.bottom_adwords_count %></th>
+          <th scope="column"><%= get_url_from (keyword.top_adwords_urls + keyword.bottom_adwords_urls), keyword.adwords_count %></th>
+          <th scope="column"><%= get_url_from keyword.non_adwords_urls, keyword.non_adwords_count %></th>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center"><strong>Total Links: <%= keyword.total_urls %> - <%= link_to "View detail", keyword_path(keyword), target: "_blank" %></strong></td>
+        </tr>
+      </table>
+    </div>
+    <br>
+  <% end %>
+
+  <div class="pagination">
+    <%= paginate @keywords %>
   </div>
-  <br>
-<% end %>
 
-<div class="pagination">
-  <%= paginate @keywords %>
+  <div id="keywordModal" class="reveal-modal modal-urls" data-reveal>
+    <ul class="buttonText"></ul>
+  </div>
+
+  <script type="text/javascript">
+    $(document).foundation();
+    $('[data-reveal-id]').on('click', function() {
+      var targetModal = $('#' + $(this).data('revealId'));
+      var newText = $(this).data('myUrl');
+      targetModal.find('.buttonText').html(newText);
+      var popup = new Foundation.Reveal($('#keywordModal'));
+      popup.open();
+    });
+    $(".close-reveal-modal").on('click', function() {
+      var popup = new Foundation.Reveal($('#keywordModal'));
+      popup.close();
+    });
+
+    $("#keywordFileUpload").on('change', function() {
+      $('#submit_keyword').click();
+    });
+  </script>
+
+  <% content_for :title, t("page.keyword.title") %>
 </div>
-
-<div id="keywordModal" class="reveal-modal keyword-modal" data-reveal>
-  <ul class="buttonText"></ul>
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-<script type="text/javascript">
-  $(document).foundation();
-  $('[data-reveal-id]').on('click', function() {
-    var targetModal = $('#' + $(this).data('revealId'));
-    var newText = $(this).data('myUrl');
-    targetModal.find('.buttonText').html(newText);
-    var popup = new Foundation.Reveal($('#keywordModal'));
-    popup.open();
-  });
-  $(".close-reveal-modal").on('click', function() {
-    var popup = new Foundation.Reveal($('#keywordModal'));
-    popup.close();
-  });
-
-  $("#keywordFileUpload").on('change', function() {
-    $('#submit_keyword').click();
-  });
-</script>
-
-<% content_for :title, t("page.keyword.title") %>

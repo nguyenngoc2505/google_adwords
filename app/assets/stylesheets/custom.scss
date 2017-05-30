@@ -1,25 +1,6 @@
-body {
-  background: #F0F0F3;
-}
-
-.content {
-  margin: 40px 100px 40px 100px;
-}
-
-.keyword_content {
-  border: 3px solid #bac7d0;
-}
-
-.row_center {
-  text-align: center;
-}
-
-#submit_keyword {
-  display: none;
-}
-
-.notice_text {
-  color: red;
+.modal-urls {
+  background: white;
+  margin: 200px 300px 0px 300px;
 }
 
 .alert {
@@ -38,45 +19,6 @@ body {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #3c763d;
-}
-
-.error-login {
-  margin: -10px 16px 15px 17px;
-  color: #a94442;
-}
-
-a.close {
-  float: right;
-}
-
-.keyword-modal {
-  background: white;
-  margin: 200px 300px 0px 300px;
-}
-
-.close-button {
-  margin: 200px 300px 0px 300px;
-}
-
-.pagination {
-  float: right;
-}
-
-.keyword_label {
-  background-color: #2c3840;
-  color: white;
-}
-
-.login-header {
-  text-align: center;
-  margin: 30px;
-}
-
-.login-box {
-  background: #fff;
-  border: 1px solid #ddd; 
-  margin: 40px 0;
-  padding: 40px 20px 20px 20px;
 }
 
 .topbar-responsive {
@@ -102,41 +44,6 @@ a.close {
 
       &:hover {
         color: lighten(#2c3840, 60%);
-      }
-
-      @media screen and (max-width: 39.9375em) {
-        padding: 0.875rem 0;
-      }
-    }
-
-    .topbar-responsive-button {
-      color: white;
-      border-color: white;
-      border-radius: 5000px;
-      transition: color 0.15s ease-in, border-color 0.15s ease-in;
-
-      @media screen and (max-width: 39.9375em) {
-        width: 100%;
-        margin: 0.875rem 0;
-      }
-    }
-  }
-
-   @media screen and (max-width: 39.9375em) {
-     padding: 0.75rem;
-
-    .top-bar-title {
-      position: relative;
-      width: 100%;
-
-      span {
-        position: absolute;
-        right: 0;
-        border: 1px solid white;
-        border-radius: 5px;
-        padding: 0.25rem 0.45rem;
-        top: 50%;
-        transform: translateY(-50%);
       }
     }
   }
