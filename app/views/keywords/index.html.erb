@@ -8,9 +8,9 @@
     <% end %>
   <% end %>
 
-  <form action="/keywords" method="POST" enctype="multipart/form-data" id="create_keyword"> 
+  <form action="/import_keywords" method="POST" enctype="multipart/form-data" id="create_keyword"> 
     <label for="keywordFileUpload" class="button">Upload Keywords</label><span class="red"> Please upload CSV files</span>
-    <input type="file" id="keywordFileUpload" class="show-for-sr" name="keywords">
+    <input type="file" id="keywordFileUpload" class="show-for-sr" name="import_keyword[file]">
       <input name="submit" type="submit" id="submit_keyword" class="button-hidden"> 
   </form>
 

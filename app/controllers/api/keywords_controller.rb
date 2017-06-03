@@ -21,11 +21,6 @@ class Api::KeywordsController < Api::BaseController
     render json: {status: 0, keyword: {content: @keyword.content}}
   end
 
-  def create
-    @keywords.each{|k| CreateKeywordsJob.perform_later @current_user.id, k}
-    render json: {status: 0}
-  end
-
   private
   def load_keyword
     @keyword = @current_user.keywords.find_by_id params[:id]

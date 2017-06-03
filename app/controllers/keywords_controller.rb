@@ -13,16 +13,6 @@ class KeywordsController < ApplicationController
     @keyword = current_user.keywords.find params[:id]
   end
 
-  def create
-    if keywords = ParseKeywordsService.new(params[:keywords]).extract
-      keywords.each{|k| CreateKeywordsJob.perform_later current_user.id, k}
-      flash[:success] = I18n.t "message.keyword.create.success"
-    else
-      flash[:error] = "Invalid file"
-    end
-    redirect_to root_path
-  end
-
   private
   def get_layout
     case action_name
