@@ -1,13 +1,16 @@
 class Api::SessionsController < DeviseController
   protect_from_forgery with: :null_session
+  EMAIL_PASSWORD = GoogleAdword::Error::API::Login::InvalidEmailOrPassword
+  INVALID_PARAMS = GoogleAdword::Error::API::Login::InvalidParams
+  NO_ACCESS_TOKEN = GoogleAdword::Error::API::Common::NoAccessToken
 
   include GoogleAdword::ErrorHandling
 
-  handle_as_not_found GoogleAdword::Error::API::Login::InvalidEmailOrPassword,
+  handle_as_not_found EMAIL_PASSWORD,
     error_code: GoogleAdword::Error::CODES[:invalid_email_or_password]
-  handle_as_internal_server_error GoogleAdword::Error::API::Login::InvalidParams,
+  handle_as_internal_server_error INVALID_PARAMS,
     error_code: GoogleAdword::Error::CODES[:invalid_params]
-  handle_as_internal_server_error GoogleAdword::Error::API::Common::NoAccessToken,
+  handle_as_internal_server_error NO_ACCESS_TOKEN,
     error_code: GoogleAdword::Error::CODES[:no_access_token]
 
   prepend_before_action :require_no_authentication, only: :create

@@ -8,6 +8,10 @@ en:
       title: "Google Adword"
       show:
         title: "Page Detail"
+  message:
+    keyword:
+      create:
+        success: "Create Keywords success please wait a moment to see results"
   google_adword:
     error:
       api:

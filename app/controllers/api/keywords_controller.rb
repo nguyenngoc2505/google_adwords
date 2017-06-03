@@ -1,14 +1,18 @@
 class Api::KeywordsController < Api::BaseController
-  handle_as_not_found GoogleAdword::Error::API::Keywords::InvalidKeywordId,
+  INVALID_KEYWORD_ID = GoogleAdword::Error::API::Keywords::InvalidKeywordId
+  INVALID_FILE = GoogleAdword::Error::API::Keywords::InvalidFile
+
+  handle_as_not_found INVALID_KEYWORD_ID,
     error_code: GoogleAdword::Error::CODES[:invalid_keyword_id]
-  handle_as_internal_server_error GoogleAdword::Error::API::Keywords::InvalidFile,
+  handle_as_internal_server_error INVALID_FILE,
     error_code: GoogleAdword::Error::CODES[:invalid_file]
 
   before_action :load_keyword, only: :show
   before_action :load_keyword_params, only: :create
 
   def index
-    keywords = @current_user.keywords.order_by_keyword.page(params[:page]).per 10
+    keywords = @current_user.keywords.order_by_keyword
+      .page(params[:page]).per 10
     presenters = KeywordsPresenter.new(keywords).as_json
     render json: {status: 0, keywords: presenters}
   end

@@ -7,7 +7,7 @@ FactoryGirl.define do
     adwords_count 2
     non_adwords_count 10
     total_urls 90
-    total_results 'About 1000.000 results'
-    content '<title> GoogleAdword </title>'
+    total_results "About 1000.000 results"
+    content "<title> GoogleAdword </title>"
   end
 end

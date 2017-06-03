@@ -5,7 +5,8 @@ class KeywordsController < ApplicationController
   layout :get_layout
 
   def index
-    @keywords = current_user.keywords.order_by_keyword.page(params[:page]).per 10
+    @keywords = current_user.keywords.order_by_keyword
+      .page(params[:page]).per 10
   end
 
   def show
@@ -15,12 +16,11 @@ class KeywordsController < ApplicationController
   def create
     if keywords = ParseKeywordsService.new(params[:keywords]).extract
       keywords.each{|k| CreateKeywordsJob.perform_later current_user.id, k}
-      flash[:success] = "Create Keywords success please wait a moment to see results"
-      redirect_to root_path
+      flash[:success] = I18n.t "message.keyword.create.success"
     else
       flash[:error] = "Invalid file"
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   private

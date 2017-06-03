@@ -8,14 +8,14 @@ class ParseKeywordsService
   end
 
   def extract
-    return if in_valid_file? || invalid_content?
+    return if invalid_file? || invalid_content?
     content
   end
 
   private
   attr_reader :file
 
-  def in_valid_file?
+  def invalid_file?
     file.try(:content_type) != "text/csv"
   end
 

@@ -7,7 +7,7 @@ module GoogleAdword::Error
     invalid_keyword_id: 15,
     invalid_file: 16
   }
-  class Base < ::Exception
+  class Base < RuntimeError
     def initialize message_hash = {}
       t_key = self.class.name.underscore.gsub(/\//, ".")
       super I18n.t(t_key, message_hash)

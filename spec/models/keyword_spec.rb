@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Keyword, type: :model do
-  describe "validations" do
+  describe "validations presence" do
     it{should validate_presence_of(:user)}
     it{should validate_presence_of(:keyword)}
     it{should validate_presence_of(:top_adwords_count)}
@@ -10,12 +10,29 @@ RSpec.describe Keyword, type: :model do
     it{should validate_presence_of(:non_adwords_count)}
     it{should validate_presence_of(:total_urls)}
     it{should validate_presence_of(:content)}
+  end
 
-    it{should validate_numericality_of(:top_adwords_count).only_integer.is_greater_than_or_equal_to(0)}
-    it{should validate_numericality_of(:bottom_adwords_count).only_integer.is_greater_than_or_equal_to(0)}
-    it{should validate_numericality_of(:adwords_count).only_integer.is_greater_than_or_equal_to(0)}
-    it{should validate_numericality_of(:non_adwords_count).only_integer.is_greater_than_or_equal_to(0)}
-    it{should validate_numericality_of(:total_urls).only_integer.is_greater_than_or_equal_to(0)}
+  describe "validations number" do
+    it do
+      should validate_numericality_of(:top_adwords_count)
+        .only_integer.is_greater_than_or_equal_to(0)
+    end
+    it do
+      should validate_numericality_of(:bottom_adwords_count)
+        .only_integer.is_greater_than_or_equal_to(0)
+    end
+    it do
+      should validate_numericality_of(:adwords_count)
+        .only_integer.is_greater_than_or_equal_to(0)
+    end
+    it do
+      should validate_numericality_of(:non_adwords_count)
+        .only_integer.is_greater_than_or_equal_to(0)
+    end
+    it do
+      should validate_numericality_of(:total_urls)
+        .only_integer.is_greater_than_or_equal_to(0)
+    end
   end
 
   describe "::order_by_keyword" do

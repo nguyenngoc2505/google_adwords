@@ -30,7 +30,8 @@ class ExtractPageService
     :non_adword
 
   def page_content
-    @page_content ||= Nokogiri::HTML open(DESTINATION_URL%keyword).read, nil, "utf-8"
+    @page_content ||= Nokogiri::HTML open(DESTINATION_URL % keyword).read,
+      nil, "utf-8"
   end
 
   def create_page_variable

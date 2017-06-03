@@ -1,10 +1,11 @@
 class Api::BaseController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :require_access_token
+  NO_ACCESS_TOKEN = GoogleAdword::Error::API::Common::NoAccessToken
 
   include GoogleAdword::ErrorHandling
 
-  handle_as_internal_server_error GoogleAdword::Error::API::Common::NoAccessToken,
+  handle_as_internal_server_error NO_ACCESS_TOKEN,
     error_code: GoogleAdword::Error::CODES[:no_access_token]
   handle_as_forbidden GoogleAdword::Error::API::Common::InvalidAccessToken,
     error_code: GoogleAdword::Error::CODES[:invalid_access_token]
